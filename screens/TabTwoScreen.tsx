@@ -1,10 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
+import * as ScreenOrientation from 'expo-screen-orientation';
+import { useFocusEffect } from '@react-navigation/native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
 export default function TabTwoScreen() {
+
+  useFocusEffect(
+    React.useCallback(() => {
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE).then(resp => {console.log('THE RESPONSE ', resp)});
+    }, [])
+  );
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab Two</Text>
